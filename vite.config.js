@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   server:{
     proxy:{
-      '/api': 'https://ecommerce-server-side-sigma.vercel.app/'
+      '/api/v1': 'https://ecommerce-server-side-sigma.vercel.app/'
         
     },
   },
