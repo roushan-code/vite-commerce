@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, getProduct } from "../../actions/productAction";
 import Loader from "../layout/Loader/loader";
 import ProductCard from "../Home/ProductCard";
-// import Pagination from "react-js-pagination";
+import Pagination from "react-js-pagination";
 import Slider from '@mui/material/Slider';
 import { useAlert } from "react-alert";
 import MetaData from "../layout/Metadata";
@@ -121,7 +121,7 @@ let count = filteredProductsCount;
           </div>
 
           
-          {/* {resultPerPage < count && (
+          {resultPerPage < count && (
             <div className="paginationBox">
               <Pagination
                 activePage={currentPage}
@@ -138,7 +138,7 @@ let count = filteredProductsCount;
                 activeLinkClass="pageLinkActive"
               />
             </div>
-          )} */}
+          )}
         </Fragment>
       )}
     </Fragment>
