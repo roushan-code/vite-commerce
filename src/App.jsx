@@ -15,6 +15,7 @@ import { loadUser } from './actions/userAction.jsx';
 import UserOptions from "./component/layout/Header/UserOptions.jsx"
 import { useSelector } from 'react-redux';
 import PrivateRoute from './component/Route/ProtectedRoute.jsx';
+import PrivateRouteAdmin from './component/Route/ProtectedRouteAdmin.jsx';
 import UpdateProfile from './component/User/UpdateProfile.jsx';
 import UpdatePassword from './component/User/UpdatePassword.jsx';
 import ForgotPassword from './component/User/ForgotPassword.jsx';
@@ -74,36 +75,41 @@ function App() {
         <Route exact path="/contact" Component={Contact} />
         <Route exact path="/about" Component={About} />
 
+        <Route
+          element={<PrivateRouteAdmin isAdmin={true} />}
+        >
+          <Route element={<Dashboard />} path="/admin/dashboard" exact />
+          <Route element={<ProductList />} path="/admin/products" exact />
+          <Route element={<NewProduct />} path="/admin/product" exact />
+          <Route element={<UpdateProduct />} path="/admin/product/:id" exact />
+          <Route element={<OrderList />} path="/admin/orders" exact />
+          <Route element={<ProcessOrder />} path="/admin/order/:id" exact />
+          <Route element={<UsersList />} path="/admin/users" exact />
+          <Route element={<UpdateUser />} path="/admin/user/:id" exact />
+          <Route element={<ProductReviews />} path="/admin/reviews" exact />
+
+        </Route>
+
 
         <Route
           element={<PrivateRoute isAdmin={false} />}
         >
-          <Route element={<Profile />} path="/account" exact />
-          <Route element={<UpdateProfile />} path="/me/update" exact />
+        <Route element={<Profile />} path="/account" exact />
+        <Route element={<UpdateProfile />} path="/me/update" exact />
           <Route element={<UpdatePassword />} path="/password/update" exact />
           <Route element={<Shipping />} path="/login/shipping" exact />
           <Route element={<ConfirmOrder />} path="/order/confirm" exact />
           <Route element={<OrderSuccess />} path="/success" exact />
           <Route element={<MyOrders />} path="/orders" exact />
           <Route element={<OrderDetails />} path="/order/:id" exact />
-          
+
 
           <Route element={
-            <PaymentGuard/>
+            <PaymentGuard />
           } path="/process/payment" exact />
-
-          <Route isAdmin={true} element={<Dashboard />} path="/admin/dashboard" exact />
-          <Route isAdmin={true} element={<ProductList />} path="/admin/products" exact />
-          <Route isAdmin={true} element={<NewProduct />} path="/admin/product" exact />
-          <Route isAdmin={true} element={<UpdateProduct />} path="/admin/product/:id" exact />
-          <Route isAdmin={true} element={<OrderList />} path="/admin/orders" exact />
-          <Route isAdmin={true} element={<ProcessOrder />} path="/admin/order/:id" exact />
-          <Route isAdmin={true} element={<UsersList />} path="/admin/users" exact />
-          <Route isAdmin={true} element={<UpdateUser />} path="/admin/user/:id" exact />
-          <Route isAdmin={true} element={<ProductReviews />} path="/admin/reviews" exact />
-
         </Route>
-          <Route path='*' Component={window.location.pathname === "/process/payment" ? null : NotFound }/>
+        
+        <Route path='*' Component={window.location.pathname === "/process/payment" ? null : NotFound} />
       </Routes>
 
       <Footer />

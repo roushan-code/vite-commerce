@@ -85,7 +85,11 @@ const LoginSignUp = () => {
     }
   };
   // const redirect = "/account";
-  const redirect = location.search ? location.search.split("=")[1] : "/account";
+  // const redirect = location.search ? location.search.split("=")[1] : "/orders";
+
+  // if (isAuthenticated) {
+  //   navigate(redirect);
+  // }
 
   useEffect(() => {
     if (error) {
@@ -94,10 +98,7 @@ const LoginSignUp = () => {
       dispatch(clearErrors());
     }
     
-    if (isAuthenticated) {
-      navigate(redirect);
-    }
-  }, [dispatch, error, alert, navigate, isAuthenticated,redirect]);
+  }, [dispatch, error, alert, navigate ]);
 
   const switchTabs = (e, tab) => {
     if (tab === "login") {
