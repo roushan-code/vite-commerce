@@ -8,7 +8,7 @@ export default defineConfig({
       '/api': {
         target: 'https://ecommerce-server-side-sigma.vercel.app/',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        
       },
     },
   },
