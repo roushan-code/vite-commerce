@@ -9,7 +9,7 @@ import {
 } from "../../actions/orderAction";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from '../layout/Loader/loader.jsx';
-import { useAlert } from "react-alert";
+import { toast } from 'react-toastify';
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import { useParams } from 'react-router-dom';
 import { UPDATE_ORDER_RESET } from "../../constants/orderContants";
@@ -32,26 +32,26 @@ const ProcessOrder = () => {
   };
 
   const dispatch = useDispatch();
-  const alert = useAlert();
+  
 
   const [status, setStatus] = useState("");
 
   useEffect(() => {
     if (error) {
-      alert.error(error);
+      toast.error(error);
       dispatch(clearErrors());
     }
     if (updateError) {
-      alert.error(updateError);
+      toast.error(updateError);
       dispatch(clearErrors());
     }
     if (isUpdated) {
-      alert.success("Order Updated Successfully");
+      toast.success("Order Updated Successfully");
       dispatch({ type: UPDATE_ORDER_RESET });
     }
 
     dispatch(getOrderDetails(id));
-  }, [dispatch, alert, error, id, isUpdated, updateError]);
+  }, [dispatch, toast, error, id, isUpdated, updateError]);
 
   return (
     <Fragment>

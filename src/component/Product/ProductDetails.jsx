@@ -6,7 +6,7 @@ import "./ProductDetails.css";
 import { useSelector, useDispatch } from 'react-redux';
 import { clearErrors, getProductDetails, newReview } from '../../actions/productAction';
 import { useParams } from 'react-router-dom';
-import { useAlert } from "react-alert"
+import { toast } from 'react-toastify';
 import { addItemsToCart } from "../../actions/cartAction"
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -23,7 +23,7 @@ import Loader from '../layout/Loader/loader.jsx';
 const ProductDetails = () => {
 
     const dispatch = useDispatch();
-    const alert = useAlert();
+    
 
 
     const { id } = useParams();
@@ -61,7 +61,7 @@ const ProductDetails = () => {
 
     const addToCartHandler = () => {
         dispatch(addItemsToCart(id, quantity));
-        alert.success("Item Added to Cart");
+        toast.success("Item Added to Cart");
     }
 
     // console.log(pro.ratings)
@@ -84,20 +84,20 @@ const ProductDetails = () => {
 
     useEffect(() => {
         if (error) {
-            alert.error(error);
+            toast.error(error);
             dispatch(clearErrors())
         }
         if (reviewError) {
-            alert.error(reviewError);
+            toast.error(reviewError);
             dispatch(clearErrors());
         }
 
         if (success) {
-            alert.success("Review Submitted Successfully");
+            toast.success("Review Submitted Successfully");
             dispatch({ type: NEW_REVIEW_RESET });
         }
         dispatch(getProductDetails(id));
-    }, [dispatch, id, error, alert, reviewError, success]);
+    }, [dispatch, id, error, toast, reviewError, success]);
 
 
     const myStyle = {

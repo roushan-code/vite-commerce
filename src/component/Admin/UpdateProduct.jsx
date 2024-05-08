@@ -5,7 +5,7 @@ import {
   updateProduct,
   getProductDetails,
 } from "../../actions/productAction";
-import { useAlert } from "react-alert";
+import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import Metadata from "../layout/Metadata";
@@ -21,7 +21,7 @@ const UpdateProduct = () => {
     const {id} = useParams();
     const navigate = useNavigate();
   const dispatch = useDispatch();
-  const alert = useAlert();
+  
 
   const { error, product } = useSelector((state) => state.productDetails);
 
@@ -66,23 +66,23 @@ const UpdateProduct = () => {
       setOldImages(product && product.images);
     }
     if (error) {
-      alert.error(error);
+      toast.error(error);
       dispatch(clearErrors());
     }
 
     if (updateError) {
-      alert.error(updateError);
+      toast.error(updateError);
       dispatch(clearErrors());
     }
 
     if (isUpdated) {
-      alert.success("Product Updated Successfully");
+      toast.success("Product Updated Successfully");
       navigate("/admin/products");
       dispatch({ type: UPDATE_PRODUCT_RESET });
     }
   }, [
     dispatch,
-    alert,
+    toast,
     error,
     navigate,
     isUpdated,

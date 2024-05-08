@@ -5,13 +5,13 @@ import MetaData from "../layout/Metadata";
 import { clearErrors, getProduct } from "../../actions/productAction.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from '../layout/Loader/loader.jsx';
-import { useAlert } from 'react-alert';
+import { toast } from 'react-toastify';
 import ProductCard from './ProductCard.jsx';
 
 
 
 const Home = () => {
-    const alert = useAlert();
+    
     const dispatch = useDispatch();
     const { loading, error, products } = useSelector((state) => state.products);
     // console.log(products);
@@ -20,17 +20,12 @@ const Home = () => {
 
     useEffect(() => {
         if(error){
-            alert.error(error);
+            toast.error(error);
             dispatch(clearErrors())
         }
         dispatch(getProduct())
-    }, [dispatch, error,alert]);
-    // useEffect(() => {
-    //     if(error){
-    //         return alert.error(error);
-    //     }
-    //     dispatch(getProduct())
-    // }, [dispatch, error,alert]);
+    }, [dispatch, error,toast]);
+   
 
 
 

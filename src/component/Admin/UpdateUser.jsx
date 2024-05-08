@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import "./newProduct.css";
 import { useSelector, useDispatch } from "react-redux";
-import { useAlert } from "react-alert";
+import { toast } from 'react-toastify';
 import {  useNavigate, useParams } from "react-router-dom";
 import Metadata from "../layout/Metadata";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
@@ -20,7 +20,7 @@ import Loader from "../layout/Loader/loader";
 const UpdateUser = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const alert = useAlert();
+  
 
   const { loading, error, user } = useSelector((state) => state.userDetails);
 
@@ -45,21 +45,21 @@ const UpdateUser = () => {
       setRole(user.role);
     }
     if (error) {
-      alert.error(error);
+      toast.error(error);
       dispatch(clearErrors());
     }
 
     if (updateError) {
-      alert.error(updateError);
+      toast.error(updateError);
       dispatch(clearErrors());
     }
 
     if (isUpdated) {
-      alert.success("User Updated Successfully");
+      toast.success("User Updated Successfully");
       navigate("/admin/users");
       dispatch({ type: UPDATE_USER_RESET });
     }
-  }, [dispatch, alert, error, navigate, isUpdated, updateError, user, id]);
+  }, [dispatch, toast, error, navigate, isUpdated, updateError, user, id]);
 
   const updateUserSubmitHandler = (e) => {
     e.preventDefault();

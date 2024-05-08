@@ -7,14 +7,13 @@ import LockOpenIcon from '@mui/icons-material/LockOpen';
 import FaceIcon from '@mui/icons-material/Face';
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, login, register } from "../../actions/userAction";
-import { useAlert } from "react-alert";
+import { toast } from 'react-toastify';
 
 
 const LoginSignUp = () => {
     const navigate = useNavigate();
     const location = useLocation();
   const dispatch = useDispatch();
-  const alert = useAlert();
 
   const { error, loading, isAuthenticated } = useSelector(
     (state) => state.user
@@ -85,20 +84,21 @@ const LoginSignUp = () => {
     }
   };
   // const redirect = "/account";
-  // const redirect = location.search ? location.search.split("=")[1] : "/orders";
+  const redirect = location.search ? location.search.split("=")[1] : "/account";
 
-  // if (isAuthenticated) {
-  //   navigate(redirect);
-  // }
+  
 
   useEffect(() => {
     if (error) {
-      alert.error(error);
+      toast.error(error);
         
       dispatch(clearErrors());
     }
+    if (isAuthenticated) {
+      navigate(redirect);
+    }
     
-  }, [dispatch, error, alert, navigate ]);
+  }, [dispatch, error, toast,isAuthenticated,redirect, navigate ]);
 
   const switchTabs = (e, tab) => {
     if (tab === "login") {

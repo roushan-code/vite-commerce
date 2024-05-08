@@ -5,14 +5,14 @@ import {  useNavigate,useParams } from "react-router-dom";
 import { clearErrors, resetPassword } from "../../actions/userAction";
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { useDispatch, useSelector } from "react-redux";
-import { useAlert } from "react-alert";
+import { toast } from 'react-toastify';
 import LockIcon from '@mui/icons-material/Lock';
 import Metadata from "../layout/Metadata";
 
 const ResetPassword = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const alert = useAlert();
+    
   
     const {token} = useParams();
 
@@ -36,16 +36,16 @@ const ResetPassword = () => {
   
     useEffect(() => {
       if (error) {
-        alert.error(error);
+        toast.error(error);
         dispatch(clearErrors());
       }
   
       if (success) {
-        alert.success("Password Updated Successfully");
+        toast.success("Password Updated Successfully");
   
         navigate("/login");
       }
-    }, [dispatch, error, alert, navigate, success]);
+    }, [dispatch, error, toast, navigate, success]);
   
     return (
       <Fragment>

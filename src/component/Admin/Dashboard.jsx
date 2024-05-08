@@ -95,7 +95,7 @@ const Dashboard = () => {
     <div className="dashboard">
       <Metadata title="Dashboard - Admin Panel" />
       <Sidebar />
-
+      
       <div className="dashboardContainer">
       <h2 className="h22">Dashboard</h2>
 

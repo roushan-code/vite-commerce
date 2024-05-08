@@ -7,7 +7,7 @@ import Loader from "../layout/Loader/loader";
 import ProductCard from "../Home/ProductCard";
 import Pagination from "react-js-pagination";
 import Slider from '@mui/material/Slider';
-import { useAlert } from "react-alert";
+import { toast } from 'react-toastify';
 import MetaData from "../layout/Metadata";
 
 
@@ -25,7 +25,6 @@ const Products = () => {
 
   const dispatch = useDispatch();
 
-  const alert = useAlert();
 
   const [currentPage, setCurrentPage] = useState(1);
   const [price, setPrice] = useState([0, 150000]);
@@ -57,13 +56,13 @@ let count = filteredProductsCount;
 
   useEffect(()=>{
     if(error){
-      alert.error(error);
+      toast.error(error);
       dispatch(clearErrors());
     }
     
     dispatch(getProduct(keyword, currentPage, price, category, ratings));
 
-  },[dispatch, keyword, currentPage,price, category, ratings, alert, error]);
+  },[dispatch, keyword, currentPage,price, category, ratings, toast, error]);
 
 
   return (
