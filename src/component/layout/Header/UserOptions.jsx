@@ -50,7 +50,7 @@ const UserOptions = ({user}) => {
     function logoutUser(){
       dispatch(logout());
       toast.success("Logout Successfully")
-      
+      navigate("/login");
     }
 
   return (

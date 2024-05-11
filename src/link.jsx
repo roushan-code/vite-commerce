@@ -1,0 +1,1 @@
+export const url = "https://ecommerce-server-side-sigma.vercel.app"

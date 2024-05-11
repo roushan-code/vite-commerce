@@ -10,12 +10,22 @@ const ProtectedRouteAdmin = ({ isAdmin, ...rest }) => {
     //         isAuthenticated === false ? <Navigate to="/login" replace/> : (isAdmin === true && user && user.role !== "admin") ? <Navigate to="/login" replace/> : <Outlet/>
     //     )
     // );
-    if(loading === false && isAuthenticated){
-    return (
-        loading === false &&  isAuthenticated === true && isAdmin === true && user && user.role == "admin" ?   <Outlet/> :<Navigate to="/login" replace/> 
+    
+    // console.log(loading)
+    // console.log(isAuthenticated)
+    
+    if (loading === false && isAuthenticated) {
         
-    );
-};
+        if (isAdmin && user && user.role !== "admin") {
+            return <Navigate to="/login" replace />;
+        } else {
+            
+            return <Outlet />;
+        }
+    } else {
+        
+        return null;
+    }
   };
   
   export default ProtectedRouteAdmin;

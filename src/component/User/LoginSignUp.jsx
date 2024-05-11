@@ -15,7 +15,7 @@ const LoginSignUp = () => {
     const location = useLocation();
   const dispatch = useDispatch();
 
-  const { error, loading, isAuthenticated } = useSelector(
+  const { error,token, loading, isAuthenticated } = useSelector(
     (state) => state.user
   );
 

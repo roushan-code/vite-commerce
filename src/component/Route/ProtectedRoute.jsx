@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Navigate,Outlet } from "react-router-dom";
 
+
 const PrivateRoute = ({ isAdmin, ...rest }) => {
     const { loading, isAuthenticated, user } = useSelector((state) => state.user);
   
@@ -10,13 +11,12 @@ const PrivateRoute = ({ isAdmin, ...rest }) => {
     //         isAuthenticated === false ? <Navigate to="/login" replace/> : (isAdmin === true && user && user.role !== "admin") ? <Navigate to="/login" replace/> : <Outlet/>
     //     )
     // );
-    console.log(loading)
     
-    if(loading === false && isAuthenticated){
-        return (
-            loading === false &&  isAuthenticated === true && isAdmin === false ?   <Outlet/> :<Navigate to="/login" replace/> 
-            
-        );
+    // Check if loading is false and user is authenticated
+    if (loading === false && isAuthenticated) {
+        return <Outlet />;
+    } else {
+        return <Navigate to="/login" replace />;
     }
     
   };
