@@ -63,17 +63,17 @@ function App() {
       <Header />
       {isAuthenticated && <UserOptions user={user} />}
       <Routes>
-        <Route exact path='/' Component={Home} />
-        <Route exact path='/product/:id' Component={ProductDetails} />
-        <Route exact path='/products' Component={Products} />
-        <Route path='/products/:keyword' Component={Products} />
-        <Route exact path='/search' Component={Search} />
-        <Route exact path='/login' Component={LoginSignUp} />
-        <Route exact path="/cart" Component={Cart} />
-        <Route exact path="/password/forgot" Component={ForgotPassword} />
-        <Route exact path="/password/reset/:token" Component={ResetPassword} />
-        <Route exact path="/contact" Component={Contact} />
-        <Route exact path="/about" Component={About} />
+        <Route exact path='/' component={Home} />
+        <Route exact path='/product/:id' component={ProductDetails} />
+        <Route exact path='/products' component={Products} />
+        <Route path='/products/:keyword' component={Products} />
+        <Route exact path='/search' component={Search} />
+        <Route exact path='/login' component={LoginSignUp} />
+        <Route exact path="/cart" component={Cart} />
+        <Route exact path="/password/forgot" component={ForgotPassword} />
+        <Route exact path="/password/reset/:token" component={ResetPassword} />
+        <Route exact path="/contact" component={Contact} />
+        <Route exact path="/about" component={About} />
 
         <Route
           element={<PrivateRouteAdmin isAdmin={true} />}
@@ -178,7 +178,7 @@ function App() {
           <PaymentGuard />
         } path="/process/payment" exact />
 
-        <Route path='*' Component={window.location.pathname === "/process/payment" ? null : NotFound} />
+        <Route path='*' component={window.location.pathname === "/process/payment" ? null : NotFound} />
       </Routes>
 
       <Footer />
