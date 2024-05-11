@@ -1,4 +1,4 @@
-import React, { Fragment,  useState } from 'react'
+import React, { Fragment,  useEffect,  useState } from 'react'
 import "./Header.css"
 import image from "../../../images/Profile.png"
 import { SpeedDial, SpeedDialAction } from '@mui/material'
@@ -52,6 +52,7 @@ const UserOptions = ({user}) => {
       toast.success("Logout Successfully")
       navigate("/login");
     }
+    
 
   return (
     <Fragment>
