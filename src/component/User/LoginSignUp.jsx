@@ -196,7 +196,7 @@ const LoginSignUp = () => {
                     onChange={registerDataChange}
                   />
                 </div>
-                <p className="para">Each Image Size must be less than 50kb <span>*</span></p>
+                <p className="para">Image Size must be less than 50kb <span>*</span></p>
                 <div id="registerImage">
                   <img src={avatarPreview} alt="Avatar Preview" />
                   <input
