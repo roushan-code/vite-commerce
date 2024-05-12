@@ -69,6 +69,7 @@ export const productsReducer = createReducer(initialState, (builder) => {
             };
         })
         .addCase(ALL_PRODUCT_FAIL, (state, action) => {
+            console.log(action.payload);
             return {
                 loading: false,
                 error: action.payload,
