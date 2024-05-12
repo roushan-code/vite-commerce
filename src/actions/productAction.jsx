@@ -34,7 +34,7 @@ import { url } from "../link";
 
 // Get All Product
 export const getProduct = (keyword = "", currentPage = 1, price = [0, 150000], category, ratings = 0) => async (dispatch) => {
-    try {
+    
         dispatch({ type: ALL_PRODUCT_REQUEST });
 
         let link = `${url}api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
@@ -50,13 +50,7 @@ export const getProduct = (keyword = "", currentPage = 1, price = [0, 150000], c
             type: ALL_PRODUCT_SUCCESS,
             payload: data,
         })
-    } catch (error) {
-        const errorMessage = error.response ? error.response.data.message : "An error occurred";
-        dispatch({
-            type: ALL_PRODUCT_FAIL,
-            payload: errorMessage,
-        });
-    }
+    
 };
 
 // Get All Products For Admin
