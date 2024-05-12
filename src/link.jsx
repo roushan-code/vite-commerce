@@ -1,1 +1,1 @@
-export const url = "https://ecommerce-server-side-sigma.vercel.app/"
+export const url = "https://ecommerce-server-side-0syi.onrender.com/"
