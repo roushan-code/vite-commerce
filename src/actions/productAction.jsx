@@ -51,9 +51,10 @@ export const getProduct = (keyword = "", currentPage = 1, price = [0, 150000], c
             payload: data,
         })
     } catch (error) {
+        const errorMessage = error.response ? error.response.data.message : "An error occurred";
         dispatch({
             type: ALL_PRODUCT_FAIL,
-            payload: error.response.data.message,
+            payload: errorMessage,
         });
     }
 };

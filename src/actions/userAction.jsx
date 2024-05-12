@@ -94,10 +94,10 @@ export const loadUser = () => async (dispatch) => {
 
         dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
     } catch (error) {
-        // const errorMessage = error.response ? error.response.data.message : "An error occurred";
-        // console.log(errorMessage);
+        const errorMessage = error.response ? error.response.data.message : "An error occurred";
+        console.log(errorMessage);
 
-        dispatch({ type: LOAD_USER_FAIL, payload: "Please Login to access this resource" });
+        dispatch({ type: LOAD_USER_FAIL, payload: errorMessage });
     }
 };
 
