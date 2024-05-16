@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import "./Home.css";
 import { CgMouse } from "react-icons/cg";
 import MetaData from "../layout/Metadata";
@@ -14,17 +14,15 @@ const Home = () => {
     
     const dispatch = useDispatch();
     const { loading, error, products } = useSelector((state) => state.products);
-    // console.log(products);
     
     
-
     useEffect(() => {
         if(error){
             toast.error(error);
             dispatch(clearErrors())
         }
         dispatch(getProduct())
-    }, [dispatch, error,toast]);
+    }, [dispatch, error]);
    
 
 
